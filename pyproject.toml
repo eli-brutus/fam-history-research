@@ -1,0 +1,23 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "russian-handwriting-ocr"
+version = "0.1.0"
+requires-python = ">=3.11"
+dependencies = ["azure-ai-documentintelligence==1.0.2", "httpx==0.28.1", "Pillow==11.3.0", "rapidfuzz==3.14.1", "python-docx==1.2.0", "python-dotenv==1.1.1"]
+
+[project.optional-dependencies]
+dev = ["pytest==8.4.2"]
+review = ["streamlit==1.50.0"]
+
+[project.scripts]
+russian-ocr = "russian_ocr.cli:main"
+
+[tool.setuptools.packages.find]
+include = ["russian_ocr*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+markers = ["integration: paid network tests, disabled by default"]
